@@ -1,6 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const logic = require('./utils/logic');
+const webpage = require('./utils/webpage');
 
 const managerQuestions = [
     {
@@ -18,7 +18,7 @@ const managerQuestions = [
     },
     {
         type: 'input',
-        name: 'title',
+        name: 'ID',
         message: "What is the manager's employee ID?", 
         validate: input => {
             if (input) {
@@ -71,6 +71,11 @@ const managerQuestions = [
     }                   
 ];   
 
+function writeToFile(data) {        
+    fs.writeFile('index.html', data, (err) =>
+    err ? console.log(err) : console.log('Your team profile has been created'))
+};
+
 startApp();
 
 function startApp() {
@@ -79,8 +84,15 @@ function startApp() {
         .then((response) =>
             response.add === 'Yes'
             ? addTeam()
-            : console.log('Your team is built!'))
+            : renderWebPage(response))          
 };
+
+function renderWebPage(response) {
+    let webPageText = webpage(response);
+    writeToFile(webPageText);
+
+  
+ }
 
 const teamQuestion = [
     {
@@ -101,7 +113,7 @@ const teamQuestion = [
 
 function addTeam() {
     inquirer
-        .prompt(teamQuestion)     
+        .prompt(teamQuestion)             
         .then(function (response) {
             if(response.team === 'Engineer') {
                 engineerChoice();
@@ -254,7 +266,7 @@ const internQuestions = [
 
 function engineerChoice(){
     inquirer
-        .prompt(engineerQuestions)    
+        .prompt(engineerQuestions)           
         .then((response) =>
             response.add === 'Yes'
             ? addTeam()
@@ -263,7 +275,7 @@ function engineerChoice(){
 
 function internChoice(){
     inquirer
-        .prompt(internQuestions)        
+        .prompt(internQuestions)                  
             .then((response) =>
             response.add === 'Yes'
             ? addTeam()
