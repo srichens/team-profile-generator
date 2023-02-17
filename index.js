@@ -54,21 +54,33 @@ const managerQuestions = [
                 return false;
             }
         }        
-    }
+    },   
+    {
+        type: 'list',
+        name: 'add',
+        message: 'Would you like to add a team member?',
+        choices: ['Yes', 'No'],
+        validate: input => {
+            if (input) {
+                return true;
+            } else {
+                console.log('Please choose one');
+                return false;
+            }
+        }          
+    }                   
 ];   
 
 startApp();
 
 function startApp() {
     inquirer
-        .prompt(managerQuestions)
-        .then(console.log(answers)
-        )
-        // .then(askTeamQuestion()
-        //  )
+        .prompt(managerQuestions)       
+        .then((response) =>
+            response.add === 'Yes'
+            ? addTeam()
+            : console.log('Your team is built!'))
 };
-
-askTeamQuestion();
 
 const teamQuestion = [
     {
@@ -84,34 +96,23 @@ const teamQuestion = [
                 return false;
             }
         }          
-    }                   
+    }
 ];
 
-function askTeamQuestion() {
+function addTeam() {
     inquirer
-        .prompt(teamQuestion)
-        .then(console.log(answers)
-        )
-        .then(evaluateTeamChoice(answers)        
-        )
+        .prompt(teamQuestion)     
+        .then(function (response) {
+            if(response.team === 'Engineer') {
+                engineerChoice();
+            } else if(response.team === 'Intern') {
+                internChoice();
+            } else {
+                console.log('Your team is built!')
+            }       
+         }
+        );
 };
-
-function evaluateTeamChoice(answers){
-    if(answers === "Engineer"){
-        engineerChoice();
-    } else if(answers === "Intern"){
-        internChoice();
-    } else {
-        console.log("Team built");
-    }
-};
-
-function engineerChoice(){
-    inquirer
-        .prompt(engineerQuestions)
-        .then(console.log(answers))
-        .then(askTeamQuestion())
-}
 
 const engineerQuestions = [
     {
@@ -165,15 +166,22 @@ const engineerQuestions = [
                 return false;
             }
         }        
-    }
+    },
+    {
+        type: 'list',
+        name: 'add',
+        message: 'Would you like to add another team member?',
+        choices: ['Yes', 'No'],
+        validate: input => {
+            if (input) {
+                return true;
+            } else {
+                console.log('Please choose one');
+                return false;
+            }
+        }          
+    }                   
 ];   
-
-function internChoice(){
-    inquirer
-        .prompt(internQuestions)
-        .then(console.log(answers))
-        .then(askTeamQuestion())
-}
 
 const internQuestions = [
     {
@@ -227,5 +235,37 @@ const internQuestions = [
                 return false;
             }
         }        
-    }
+    },
+    {
+        type: 'list',
+        name: 'add',
+        message: 'Would you like to add another team member?',
+        choices: ['Yes', 'No'],
+        validate: input => {
+            if (input) {
+                return true;
+            } else {
+                console.log('Please choose one');
+                return false;
+            }
+        }          
+    }                   
 ];   
+
+function engineerChoice(){
+    inquirer
+        .prompt(engineerQuestions)    
+        .then((response) =>
+            response.add === 'Yes'
+            ? addTeam()
+            : console.log('Your team is built!'))
+}
+
+function internChoice(){
+    inquirer
+        .prompt(internQuestions)        
+            .then((response) =>
+            response.add === 'Yes'
+            ? addTeam()
+            : console.log('Your team is built!'))
+}
