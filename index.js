@@ -18,7 +18,7 @@ const managerQuestions = [
     },
     {
         type: 'input',
-        name: 'ID',
+        name: 'id',
         message: "What is the manager's employee ID?", 
         validate: input => {
             if (input) {
@@ -71,28 +71,50 @@ const managerQuestions = [
     }                   
 ];   
 
-function writeToFile(data) {        
-    fs.writeFile('index.html', data, (err) =>
-    err ? console.log(err) : console.log('Your team profile has been created'))
+function appendToFile(data) {        
+    fs.appendFile('index.html', data, (err) =>
+    err ? console.log(err) : console.log(""))
 };
 
+// function appendToFile(data) {        
+//     fs.appendFile('index.html', data, (err) =>
+//     err ? console.log(err) : console.log('Your team profile has been created'))
+// };
+
 startApp();
+
+// function startApp() {
+//     inquirer
+//         .prompt(managerQuestions)       
+//         .then(response => {
+//              return webpage(response);
+//          })     
+//         .then((response) => 
+//             addQuestion === 'Yes'
+//             ? addTeam() 
+//             : renderWebPage(response)
+//         )          
+// };
 
 function startApp() {
     inquirer
         .prompt(managerQuestions)       
-        .then((response) =>
-            response.add === 'Yes'
-            ? addTeam()
-            : renderWebPage(response))          
+        .then(response => {
+             return webpage(response);             
+         })
+        .then(webPageText => {
+            return appendToFile(webPageText);            
+        })     
+        .then(() => 
+            addQuestion === 'Yes'
+            ? addTeam() 
+            : console.log("Your team profile has been created")
+        )          
 };
 
-function renderWebPage(response) {
-    let webPageText = webpage(response);
-    writeToFile(webPageText);
-
-  
- }
+// function renderWebPage(webPageText) {    
+//     appendToFile(webPageText);  
+//  }
 
 const teamQuestion = [
     {
@@ -129,7 +151,7 @@ function addTeam() {
 const engineerQuestions = [
     {
         type: 'input',
-        name: 'fullname',
+        name: 'eName',
         message: "What is the engineer's full name?", 
         validate: input => {
             if (input) {
@@ -142,7 +164,7 @@ const engineerQuestions = [
     },
     {
         type: 'input',
-        name: 'title',
+        name: 'eid',
         message: "What is the engineer's employee ID?", 
         validate: input => {
             if (input) {
@@ -155,7 +177,7 @@ const engineerQuestions = [
     },
     {
         type: 'input',
-        name: 'email',
+        name: 'eEmail',
         message: "What the engineer's email address?",
         validate: input => {
             if (input) {
@@ -168,7 +190,7 @@ const engineerQuestions = [
     },    
     {
         type: 'input',
-        name: 'github',
+        name: 'eGithub',
         message: "What is the engineer's GitHub username?",
         validate: input => {
             if (input) {
@@ -198,7 +220,7 @@ const engineerQuestions = [
 const internQuestions = [
     {
         type: 'input',
-        name: 'fullname',
+        name: 'iName',
         message: "What is the intern's full name?", 
         validate: input => {
             if (input) {
@@ -211,7 +233,7 @@ const internQuestions = [
     },
     {
         type: 'input',
-        name: 'title',
+        name: 'iid',
         message: "What is the interns's employee ID?", 
         validate: input => {
             if (input) {
@@ -224,7 +246,7 @@ const internQuestions = [
     },
     {
         type: 'input',
-        name: 'email',
+        name: 'iEmail',
         message: "What the intern's email address?",
         validate: input => {
             if (input) {
@@ -237,7 +259,7 @@ const internQuestions = [
     },    
     {
         type: 'input',
-        name: 'github',
+        name: 'iGithub',
         message: "What is the intern's GitHub username?",
         validate: input => {
             if (input) {
@@ -267,17 +289,31 @@ const internQuestions = [
 function engineerChoice(){
     inquirer
         .prompt(engineerQuestions)           
-        .then((response) =>
-            response.add === 'Yes'
-            ? addTeam()
-            : console.log('Your team is built!'))
+        .then(response => {
+            return webpage(response);             
+        })
+       .then(webPageText => {
+           return appendToFile(webPageText);            
+       })     
+       .then(() => 
+           addQuestion === 'Yes'
+           ? addTeam() 
+           : console.log("Your team profile has been created")
+       )          
 }
 
 function internChoice(){
     inquirer
         .prompt(internQuestions)                  
-            .then((response) =>
-            response.add === 'Yes'
-            ? addTeam()
-            : console.log('Your team is built!'))
+        .then(response => {
+            return webpage(response);             
+        })
+       .then(webPageText => {
+           return appendToFile(webPageText);            
+       })     
+       .then(() => 
+           addQuestion === 'Yes'
+           ? addTeam() 
+           : console.log("Your team profile has been created")
+       )          
 }
