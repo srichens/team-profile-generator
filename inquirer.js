@@ -1,6 +1,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const webpage = require('./utils/webpage');
+const team = require('./team');
 
 const employeeQuestions = [
     {

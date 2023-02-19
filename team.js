@@ -1,5 +1,6 @@
 const Employee = require('./employee');
 
+
 class Manager extends Employee {
     constructor(officeNumber) {
         this.officeNumber = officeNumber;
@@ -36,3 +37,5 @@ class Intern extends Employee {
 };
 
 const intern = new Intern();
+
+function getRole(response)
