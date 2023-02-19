@@ -27,7 +27,7 @@ xx
     This product is licensed under MIT.
 
 ## Contributing
-If you would like to contribute to this application, please refer to the [Contributor Covenant] (https://www.contributor-covenant.org/).
+If you would like to contribute to this application, please refer to the [Contributor Covenant](https://www.contributor-covenant.org/).
 
 ## Tests
 Use Jest for testing. Enter npm i in the terminal to install, and then npm run test to run tests.
