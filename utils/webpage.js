@@ -10,10 +10,10 @@ return `
 function generateManager() {  
     if(response.fullname){
     return `
-Manager's name: ${response.fullname}
+Manager's name: ${response.name}
 Manager's ID: ${response.id}
 Manager's email: ${response.email}
-Manager's office number: ${response.office}
+Manager's office number: ${response.officeNumber}
 `
 } else {
     return ``
@@ -22,7 +22,7 @@ Manager's office number: ${response.office}
 }
 
 function generateEngineer() {   
-    if(response.eName){
+    if(response.Name){
         return `
 Engineer's name: ${response.eName}
 Engineer's ID: ${response.eid}
