@@ -1,7 +1,7 @@
 # Team Profile Generator
 
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
 
 ## Description
@@ -24,7 +24,7 @@ xx
 xx
 
 ## License
-    This product is licensed under MIT.
+    This product is licensed under ISC.
 
 ## Contributing
 If you would like to contribute to this application, please refer to the [Contributor Covenant](https://www.contributor-covenant.org/).
