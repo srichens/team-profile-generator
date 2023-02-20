@@ -1,7 +1,11 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const webpage = require('./src/webpage');
-//const team = require('./team');
+const Employee = require('./lib/employee');
+const Intern = require('./lib/intern');
+const Manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
+const team = [];
 
 const employeeQuestions = [
     {
@@ -139,9 +143,11 @@ const managerQuestions = [
 function managerChoice(){
     inquirer
         .prompt(managerQuestions)           
-    //     .then(response => {
-    //         return webpage(response);             
-    //     })
+        .then(response => {
+            let newManager =  new Manager(response.name, response.id, response.email, response.officeNumber);  
+            team.push(newManager);
+            console.log(team);           
+        })
     //    .then(webPageText => {
     //        return appendToFile(webPageText);            
     //    })     
@@ -185,9 +191,9 @@ const engineerQuestions = [
 function engineerChoice(){
     inquirer
         .prompt(engineerQuestions)           
-    //     .then(response => {
-    //         return webpage(response);             
-    //     })
+        .then(response => {
+            return new Engineer(response.name, response.id, response.email, response.github, response.add);          
+        })
     //    .then(webPageText => {
     //        return appendToFile(webPageText);            
     //    })     
@@ -232,9 +238,9 @@ const internQuestions = [
 function internChoice(){
     inquirer
         .prompt(internQuestions)                  
-    //     .then(response => {
-    //         return webpage(response);             
-    //     })
+        .then(response => {
+            return new Intern(response.name, response.id, response.email, response.school, response.add);       
+        })
     //    .then(webPageText => {
     //        return appendToFile(webPageText);            
     //    })     
