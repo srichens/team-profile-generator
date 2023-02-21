@@ -1,8 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const webpage = require('./src/webpage');
-const engineerCard = require('./src/engineer-card');
-const internCard = require('./src/intern-card')
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
@@ -15,7 +13,7 @@ const welcomeMessage = [
         type: 'list',
         name: 'welcome',
         message: "Welcome! To start building your team profile, please add a team manager.",
-        choices: ['Ok', 'No - Exit'],
+        choices: ['Ok'],
         validate: input => {
             if (input) {
                 return true;
@@ -38,52 +36,6 @@ function startApp(){
 };
 
 startApp();
-
-// const mgrRoleQuestion = [
-//     {
-//         type: 'list',
-//         name: 'role',
-//         message: "Please start by adding a manager",
-//         choices: ['Ok', 'Exit'],
-//         validate: input => {
-//             if (input) {
-//                 return true;
-//             } else {
-//                 console.log('Please choose one');
-//                 return false;
-//             }
-//         }          
-//     }      
-// ];   
-
-// function mgrRole() {
-//     inquirer
-//         .prompt(mgrRoleQuestion)
-//         .then((response) => 
-//         response.role === 'Ok'
-//            ? managerChoice() 
-//            : console.log("Goodbye!")
-//        )                
-
-// }
-
-
-
-// function role() {
-//     inquirer
-//         .prompt(roleQuestion)             
-//         .then(function (response) {            
-//             if(response.role === 'Manager') {
-//                 managerChoice();
-//             } else if(response.role === 'Engineer') {
-//                 engineerChoice();
-//             } else if(response.role === 'Intern') {
-//                 internChoice();
-//             } 
-//         });
-// };
-
-
 
 const managerQuestions = [
     {
@@ -140,10 +92,11 @@ const managerQuestions = [
     }    
 ];
 
-// function appendToFile(data) {        
-//     fs.appendFile('./dist/index.html', data, (err) =>
-//     err ? console.log(err) : add())
-// };
+function writeToFile(data) {        
+    fs.writeFile('./dist/index.html', data, (err) =>
+    err ? console.log(err) : console.log("Your team profile has been created!")
+    )
+};
 
 function managerChoice(){
     inquirer
@@ -151,11 +104,7 @@ function managerChoice(){
      .then(response => {
         const newManager = new Manager(response.name, response.id, response.email, response.officeNumber);  
         team.push(newManager);
-        add();
-    //     return webpage(newEmployee);           
-    //  })  
-    //   .then(webPageText => {
-    //     return appendToFile(webPageText);            
+        add();       
      })   
 };
 
@@ -166,7 +115,7 @@ const addQuestion = [
         type: 'list',
         name: 'add',
         message: 'Would you like to add a team member?',
-        choices: ['Yes', 'No'],
+        choices: ['Yes', 'No, my team is complete'],
         validate: input => {
             if (input) {
                 return true;
@@ -181,13 +130,13 @@ const addQuestion = [
 function add() {
     inquirer
      .prompt(addQuestion)
-     .then((response) => 
-       response.add === 'Yes'
-           ? chooseRole() 
-           : console.log(team)
-       )                
+     .then(response => {
+        if(response.add === 'Yes'){chooseRole()}
+        else {let profile = webpage(team);
+        writeToFile(profile)}
+     }   
+    )                
 };
-
 
 const roleQuestion = [
     {
@@ -279,13 +228,8 @@ function engineerChoice(){
      .then(response => {
         const newEngineer = new Engineer(response.name, response.id, response.email, response.github);  
         team.push(newEngineer); 
-        add();      
-    //     return webpage(newEmployee);           
-    // })  
-    //  .then(webPageText => {
-    //    return appendToFile(webPageText);            
-    })     
-    
+        add();                 
+    })         
 };
 
 const internQuestions = [
@@ -349,11 +293,6 @@ function internChoice(){
      .then(response => {
         const newIntern = new Intern(response.name, response.id, response.email, response.school);   
         team.push(newIntern);   
-        add();   
-    //     return webpage(newEmployee);           
-    // })  
-    //  .then(webPageText => {
-    //    return appendToFile(webPageText);            
-    })   
-    
+        add();                
+    })       
 };
