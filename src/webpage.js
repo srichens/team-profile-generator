@@ -1,28 +1,28 @@
 const managerSection = team => {
-    let managerHtml = '';
+    let managerCard = '';
     for (i = 0; i < team.length; i++) {
         if(team[i].getRole() === 'Manager') {
-            managerHtml = managerHtml + manager(team[i])
+            managerCard = managerCard + manager(team[i])
         }       
-    } return managerHtml;
+    } return managerCard;
 };
 
 const engineerSection = team => {
-    let engineerHtml = '';
+    let engineerCards = '';
     for (i = 0; i < team.length; i++) {
         if(team[i].getRole() === 'Engineer') {
-            engineerHtml = engineerHtml + engineer(team[i])
+            engineerCards = engineerCards + engineer(team[i])
         }
-    } return engineerHtml;
+    } return engineerCards;
 };
 
 const internSection = team => {
-    let internHtml = '';
+    let internCards = '';
     for (i = 0; i < team.length; i++) {
         if(team[i].getRole() === 'Intern') {
-            internHtml = internHtml + intern(team[i])
+            internCards = internCards + intern(team[i])
         }
-    } return internHtml;
+    } return internCards;
 };
 
 const manager = managerInfo => {
