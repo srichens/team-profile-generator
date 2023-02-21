@@ -10,12 +10,12 @@ const Manager = require('./lib/Manager');
 
 const team = [];
 
-const startQuestion = [
+const welcomeMessage = [
     {
         type: 'list',
         name: 'welcome',
-        message: "Welcome! Would you like to create a team profile?",
-        choices: ['Yes', 'No - exit app'],
+        message: "Welcome! To start building your team profile, please add a team manager.",
+        choices: ['Ok', 'No - exit app'],
         validate: input => {
             if (input) {
                 return true;
@@ -29,72 +29,45 @@ const startQuestion = [
 
 function startApp(){
     inquirer
-    .prompt(startQuestion)    
-    .then(response => response.welcome === 'Yes'
-        ? mgrRole() 
-        : console.log('Goodbye!')
-    )          
+    .prompt(welcomeMessage)    
+    .then((response) => 
+        response.welcome === 'Ok'
+           ? managerChoice() 
+           : console.log("Goodbye!")
+       )                
 };
 
 startApp();
 
-const mgrRoleQuestion = [
-    {
-        type: 'list',
-        name: 'role',
-        message: "Please start by adding a manager",
-        choices: ['Ok', 'Exit'],
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('Please choose one');
-                return false;
-            }
-        }          
-    }      
-];   
+// const mgrRoleQuestion = [
+//     {
+//         type: 'list',
+//         name: 'role',
+//         message: "Please start by adding a manager",
+//         choices: ['Ok', 'Exit'],
+//         validate: input => {
+//             if (input) {
+//                 return true;
+//             } else {
+//                 console.log('Please choose one');
+//                 return false;
+//             }
+//         }          
+//     }      
+// ];   
 
-function mgrRole() {
-    inquirer
-        .prompt(mgrRoleQuestion)
-        .then((response) => 
-        response.role === 'Ok'
-           ? managerChoice() 
-           : console.log("Goodbye!")
-       )                
+// function mgrRole() {
+//     inquirer
+//         .prompt(mgrRoleQuestion)
+//         .then((response) => 
+//         response.role === 'Ok'
+//            ? managerChoice() 
+//            : console.log("Goodbye!")
+//        )                
 
-}
+// }
 
-function chooseRole() {
-    inquirer
-        .prompt(roleQuestion)             
-        .then(function (response) {            
-            if(response.role === 'Manager') {
-                managerChoice();
-            } else if(response.role === 'Engineer') {
-                engineerChoice();
-            } else if(response.role === 'Intern') {
-                internChoice();
-            } 
-        });
-};
-const roleQuestion = [
-    {
-        type: 'list',
-        name: 'role',
-        message: "What is the title of the employee you'd like to add?",
-        choices: ['Manager', 'Engineer', 'Intern'],
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('Please choose one');
-                return false;
-            }
-        }          
-    }      
-];   
+
 
 // function role() {
 //     inquirer
@@ -177,22 +150,20 @@ function managerChoice(){
      .prompt(managerQuestions)
      .then(response => {
         const newEmployee = new Manager(response.name, response.id, response.email, response.officeNumber);  
-        // console.log(newEmployee);  
-        // return webpage(newEmployee); 
         return webpage(newEmployee);           
      })  
       .then(webPageText => {
         return appendToFile(webPageText);            
      })   
-    //.then(add())   
-   
 };
+
+
 
 const addQuestion = [
     {
         type: 'list',
         name: 'add',
-        message: 'Would you like to add another team member?',
+        message: 'Would you like to add a team member?',
         choices: ['Yes', 'No'],
         validate: input => {
             if (input) {
@@ -213,6 +184,39 @@ function add() {
            ? chooseRole() 
            : console.log("Your team profile has been created")
        )                
+};
+
+
+const roleQuestion = [
+    {
+        type: 'list',
+        name: 'role',
+        message: "What is the title of the employee you'd like to add?",
+        choices: ['Manager', 'Engineer', 'Intern', 'Done building team'],
+        validate: input => {
+            if (input) {
+                return true;
+            } else {
+                console.log('Please choose one');
+                return false;
+            }
+        }          
+    }      
+];   
+
+function chooseRole() {
+    inquirer
+        .prompt(roleQuestion)             
+        .then(function (response) {   
+            if(response.role === 'Manager') {
+                managerChoice();
+            }         
+           else if(response.role === 'Engineer') {
+                engineerChoice();
+            } else if(response.role === 'Intern') {
+                internChoice();
+            } 
+        });
 };
 
 const engineerQuestions = [
@@ -274,15 +278,13 @@ function engineerChoice(){
     inquirer
      .prompt(engineerQuestions)
      .then(response => {
-        const newEngineer = new Engineer(response.name, response.id, response.email, response.github);  
-        // console.log(newEmployee);  
-        // return webpage(newEmployee); 
-        return engineerCard(newEngineer);           
+        const newEngineer = new Engineer(response.name, response.id, response.email, response.github);         
+        return engineerCard(newEngineer);          
      })  
       .then(engCard => {
         return appendToFile(engCard);            
      })   
-    // .then(add())     
+   
     
 };
 
@@ -345,14 +347,12 @@ function internChoice(){
     inquirer
      .prompt(internQuestions)
      .then(response => {
-        const newEmployee = new Intern(response.name, response.id, response.email, response.school);  
-        // console.log(newEmployee);  
-        // return webpage(newEmployee); 
-        return webpage(newEmployee);           
+        const newIntern = new Intern(response.name, response.id, response.email, response.school);         
+        return internCard(newIntern);           
      })  
-      .then(webPageText => {
-        return appendToFile(webPageText);            
+      .then(intCard => {
+        return appendToFile(intCard);            
      })   
-    // .then(add())   
+   
     
 };

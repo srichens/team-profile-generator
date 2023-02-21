@@ -1,5 +1,5 @@
 function generateWebpage(newEmployee) {     
-
+  
    
     return `
     <!DOCTYPE html>
@@ -16,44 +16,34 @@ function generateWebpage(newEmployee) {
         <h1 >My Team</h1>
     </header>
  
-    <main class="flex flex-row flex-wrap justify-center">
-    <section class="manager basis-full md:basis-2/5 lg:basis-1/4 bg-gray-300 mx-5 my-10 shadow-xl shadow-gray-500/70">
-    <h2 class="text-white bg-blue-600 p-5">
-        <p class="name text-2xl">${newEmployee.getName()}</p>
-        <p class="role text-xl">${newEmployee.getRole()}</p>
-    </h2>
-    <p class="id bg-white p-5 mx-5 mt-10 mb-2">ID: <span>${newEmployee.getId()}</span></p>
-    <p class="email bg-white p-5 mx-5 my-2">Email: <span>${newEmployee.getEmail()}</span></p>
-    <p class="officeNumber bg-white p-5 mx-5 mt-2 mb-10">Office number: <span>${newEmployee.getOfficeNumber()}</span></p>
-   
-    </section>
+    <main id="cards" class="flex flex-row flex-wrap justify-center">
+       ${generateEmployee(newEmployee)}
     </main>
+    <script src=""../src/engineer-card.js">"></script>
+    <script src=""../src/intern-card.js">></script>
 </body>
 </html>  
-
         
-//     `
-    // function generateEmployee(newEmployee) {
+    `
+    function generateEmployee(newEmployee) {
     
       
-    //         return `
+            return `
 
-    //     <section class="manager basis-full md:basis-2/5 lg:basis-1/4 bg-gray-300 mx-5 my-10 shadow-xl shadow-gray-500/70">
-    //     <h2 class="text-white bg-blue-600 p-5">
-    //         <p class="name text-2xl">${newEmployee.getName()}</p>
-    //         <p class="role text-xl">${newEmployee.getRole()}</p>
-    //     </h2>
-    //     <p class="id bg-white p-5 mx-5 mt-10 mb-2">ID: <span>${newEmployee.getId()}</span></p>
-    //     <p class="email bg-white p-5 mx-5 my-2">Email: <span>${newEmployee.getEmail()}</span></p>
-    
-       
-    //     </section>
-    
+    <section class="manager basis-full md:basis-2/5 lg:basis-1/4 bg-gray-300 mx-5 my-10 shadow-xl shadow-gray-500/70">
+        <h2 class="text-white bg-blue-600 p-5">
+                <p class="name text-2xl">${newEmployee.getName()}</p>
+                <p class="role text-xl">${newEmployee.getRole()}</p>
+        </h2>
+        <p class="id bg-white p-5 mx-5 mt-10 mb-2">ID: <span>${newEmployee.getId()}</span></p>
+        <p class="email bg-white p-5 mx-5 my-2">Email: <span>${newEmployee.getEmail()}</span></p>
+        <p class="officeNumber bg-white p-5 mx-5 mt-2 mb-10">Office number: <span>${newEmployee.getOfficeNumber()}</span></p>    
+    </section>   
    
    
-    //     `
+        `
         
-    // }
+    }
     // <p class="officeNumber bg-white p-5 mx-5 mt-2 mb-10">Office number: <span>${newEmployee.getOfficeNumber()}</span></p>
     // Name: ${newEmployee.getName()}
     // Title: ${newEmployee.getRole()}
