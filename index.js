@@ -15,7 +15,7 @@ const welcomeMessage = [
         type: 'list',
         name: 'welcome',
         message: "Welcome! To start building your team profile, please add a team manager.",
-        choices: ['Ok', 'No - exit app'],
+        choices: ['Ok', 'No - Exit'],
         validate: input => {
             if (input) {
                 return true;
@@ -140,20 +140,22 @@ const managerQuestions = [
     }    
 ];
 
-function appendToFile(data) {        
-    fs.appendFile('./dist/index.html', data, (err) =>
-    err ? console.log(err) : add())
-};
+// function appendToFile(data) {        
+//     fs.appendFile('./dist/index.html', data, (err) =>
+//     err ? console.log(err) : add())
+// };
 
 function managerChoice(){
     inquirer
      .prompt(managerQuestions)
      .then(response => {
-        const newEmployee = new Manager(response.name, response.id, response.email, response.officeNumber);  
-        return webpage(newEmployee);           
-     })  
-      .then(webPageText => {
-        return appendToFile(webPageText);            
+        const newManager = new Manager(response.name, response.id, response.email, response.officeNumber);  
+        team.push(newManager);
+        add();
+    //     return webpage(newEmployee);           
+    //  })  
+    //   .then(webPageText => {
+    //     return appendToFile(webPageText);            
      })   
 };
 
@@ -182,7 +184,7 @@ function add() {
      .then((response) => 
        response.add === 'Yes'
            ? chooseRole() 
-           : console.log("Your team profile has been created")
+           : console.log(team)
        )                
 };
 
@@ -192,7 +194,7 @@ const roleQuestion = [
         type: 'list',
         name: 'role',
         message: "What is the title of the employee you'd like to add?",
-        choices: ['Manager', 'Engineer', 'Intern', 'Done building team'],
+        choices: ['Engineer', 'Intern'],
         validate: input => {
             if (input) {
                 return true;
@@ -208,10 +210,7 @@ function chooseRole() {
     inquirer
         .prompt(roleQuestion)             
         .then(function (response) {   
-            if(response.role === 'Manager') {
-                managerChoice();
-            }         
-           else if(response.role === 'Engineer') {
+           if(response.role === 'Engineer') {
                 engineerChoice();
             } else if(response.role === 'Intern') {
                 internChoice();
@@ -278,13 +277,14 @@ function engineerChoice(){
     inquirer
      .prompt(engineerQuestions)
      .then(response => {
-        const newEngineer = new Engineer(response.name, response.id, response.email, response.github);         
-        return engineerCard(newEngineer);          
-     })  
-      .then(engCard => {
-        return appendToFile(engCard);            
-     })   
-   
+        const newEngineer = new Engineer(response.name, response.id, response.email, response.github);  
+        team.push(newEngineer); 
+        add();      
+    //     return webpage(newEmployee);           
+    // })  
+    //  .then(webPageText => {
+    //    return appendToFile(webPageText);            
+    })     
     
 };
 
@@ -330,7 +330,7 @@ const internQuestions = [
     },
     {
         type: 'input',
-        name: 'github',
+        name: 'school',
         message: "Where does the intern go to school?",
         validate: input => {
             if (input) {
@@ -347,12 +347,13 @@ function internChoice(){
     inquirer
      .prompt(internQuestions)
      .then(response => {
-        const newIntern = new Intern(response.name, response.id, response.email, response.school);         
-        return internCard(newIntern);           
-     })  
-      .then(intCard => {
-        return appendToFile(intCard);            
-     })   
-   
+        const newIntern = new Intern(response.name, response.id, response.email, response.school);   
+        team.push(newIntern);   
+        add();   
+    //     return webpage(newEmployee);           
+    // })  
+    //  .then(webPageText => {
+    //    return appendToFile(webPageText);            
+    })   
     
 };
