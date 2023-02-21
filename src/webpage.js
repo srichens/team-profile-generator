@@ -33,7 +33,7 @@ const manager = managerInfo => {
             <p class="role text-xl">${managerInfo.getRole()}</p>
     </h2>
     <p class="id bg-white p-5 mx-5 mt-10 mb-2">ID: ${managerInfo.getId()}</p>
-    <p class="email bg-white p-5 mx-5 my-2">Email: ${managerInfo.getEmail()}</p>  
+    <p class="email bg-white p-5 mx-5 my-2">Email: <a href="mailto:${managerInfo.getEmail()}">${managerInfo.getEmail()}</a></p>  
     <p class="officeNumber bg-white p-5 mx-5 mt-2 mb-10">Office number: ${managerInfo.getOfficeNumber()}</p>
 </section>   
 `
@@ -47,8 +47,10 @@ const engineer = engineerInfo => {
             <p class="role text-xl">${engineerInfo.getRole()}</p>
     </h2>
     <p class="id bg-white p-5 mx-5 mt-10 mb-2">ID: ${engineerInfo.getId()}</p>
-    <p class="email bg-white p-5 mx-5 my-2">Email: ${engineerInfo.getEmail()}</p> 
-    <p class="github bg-white p-5 mx-5 mt-2 mb-10">GitHub Profile: ${engineerInfo.getGithub()}</p> 
+    <p class="email bg-white p-5 mx-5 my-2">Email: <a href="mailto:${engineerInfo.getEmail()}">${engineerInfo.getEmail()}</a></p> 
+    <p class="github bg-white p-5 mx-5 mt-2 mb-10">GitHub Profile: 
+    <a href="https://www.github.com/${engineerInfo.getGithub()}" target="_blank">www.github.com/${engineerInfo.getGithub()}</a>
+    </p> 
 </section>   
 `
 }
@@ -61,7 +63,7 @@ const intern = internInfo => {
             <p class="role text-xl">${internInfo.getRole()}</p>
     </h2>
     <p class="id bg-white p-5 mx-5 mt-10 mb-2">ID: ${internInfo.getId()}</p>
-    <p class="email bg-white p-5 mx-5 my-2">Email: ${internInfo.getEmail()}</p>  
+    <p class="email bg-white p-5 mx-5 my-2">Email: <a href="mailto:${internInfo.getEmail()}">${internInfo.getEmail()}</a></p>  
     <p class="school bg-white p-5 mx-5 mt-2 mb-10">School: ${internInfo.getSchool()}</p>
 </section>   
 `
@@ -94,7 +96,6 @@ const webpage = data => {
 </html>  
         
     `  
-    
 }
  
     module.exports = webpage;
