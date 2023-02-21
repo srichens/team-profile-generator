@@ -5,7 +5,6 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 
-
 const team = [];
 
 const welcomeMessage = [
@@ -13,26 +12,18 @@ const welcomeMessage = [
         type: 'list',
         name: 'welcome',
         message: "Welcome! To start building your team profile, please add a team manager.",
-        choices: ['Ok'],
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('Please choose one');
-                return false;
-            }
-        }          
+        choices: ['Ok']        
     }      
 ];  
 
 function startApp(){
     inquirer
     .prompt(welcomeMessage)    
-    .then((response) => 
-        response.welcome === 'Ok'
-           ? managerChoice() 
-           : console.log("Goodbye!")
-       )                
+    .then(response => {
+        if(response.welcome === 'Ok'){
+            managerChoice()
+        }
+    })     
 };
 
 startApp();
@@ -92,12 +83,6 @@ const managerQuestions = [
     }    
 ];
 
-function writeToFile(data) {        
-    fs.writeFile('./dist/index.html', data, (err) =>
-    err ? console.log(err) : console.log("Your team profile has been created!")
-    )
-};
-
 function managerChoice(){
     inquirer
      .prompt(managerQuestions)
@@ -109,23 +94,20 @@ function managerChoice(){
 };
 
 
-
 const addQuestion = [
     {
         type: 'list',
         name: 'add',
         message: 'Would you like to add a team member?',
-        choices: ['Yes', 'No, my team is complete'],
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('Please choose one');
-                return false;
-            }
-        }          
+        choices: ['Yes', 'No, my team is complete']             
     }            
 ];
+
+function writeToFile(data) {        
+    fs.writeFile('./dist/index.html', data, (err) =>
+    err ? console.log(err) : console.log("Your team profile has been created!")
+    )
+};
 
 function add() {
     inquirer
@@ -143,22 +125,14 @@ const roleQuestion = [
         type: 'list',
         name: 'role',
         message: "What is the title of the employee you'd like to add?",
-        choices: ['Engineer', 'Intern'],
-        validate: input => {
-            if (input) {
-                return true;
-            } else {
-                console.log('Please choose one');
-                return false;
-            }
-        }          
+        choices: ['Engineer', 'Intern']       
     }      
 ];   
 
 function chooseRole() {
     inquirer
         .prompt(roleQuestion)             
-        .then(function (response) {   
+        .then(response => {   
            if(response.role === 'Engineer') {
                 engineerChoice();
             } else if(response.role === 'Intern') {
@@ -210,12 +184,12 @@ const engineerQuestions = [
     {
         type: 'input',
         name: 'github',
-        message: "What is the engineer's github profile?",
+        message: "What is the engineer's github profile name?",
         validate: input => {
             if (input) {
                 return true;
             } else {
-                console.log('Please enter a github profile');
+                console.log('Please enter a github profile name');
                 return false;
             }
         }        
