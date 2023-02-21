@@ -1,3 +1,30 @@
+const managerSection = team => {
+    let managerHtml = '';
+    for (i = 0; i < team.length; i++) {
+        if(team[i].getRole() === 'Manager') {
+            managerHtml = managerHtml + manager(team[i])
+        }       
+    } return managerHtml;
+};
+
+const engineerSection = team => {
+    let engineerHtml = '';
+    for (i = 0; i < team.length; i++) {
+        if(team[i].getRole() === 'Engineer') {
+            engineerHtml = engineerHtml + engineer(team[i])
+        }
+    } return engineerHtml;
+};
+
+const internSection = team => {
+    let internHtml = '';
+    for (i = 0; i < team.length; i++) {
+        if(team[i].getRole() === 'Intern') {
+            internHtml = internHtml + intern(team[i])
+        }
+    } return internHtml;
+};
+
 const manager = managerInfo => {
     return `
     <section class="manager basis-full md:basis-2/5 lg:basis-1/4 bg-gray-300 mx-5 my-10 shadow-xl shadow-gray-500/70">
@@ -40,21 +67,6 @@ const intern = internInfo => {
 `
 }
 
-const teamSection = team => {
-    let teamHtml = '';
-    for (i = 0; i < team.length; i++) {
-        if(team[i].getRole() === 'Manager') {
-            teamHtml = teamHtml + manager(team[i])
-        }
-        if(team[i].getRole() === 'Engineer') {
-            teamHtml = teamHtml + engineer(team[i])
-        }
-        if(team[i].getRole() === 'Intern') {
-            teamHtml = teamHtml + intern(team[i])
-        }
-    } return teamHtml;
-}
-
 const webpage = data => {     
   
    
@@ -74,7 +86,9 @@ const webpage = data => {
     </header>
  
     <main id="cards" class="flex flex-row flex-wrap justify-center">
-    ${teamSection(data)}
+    ${managerSection(data)}
+    ${engineerSection(data)}
+    ${internSection(data)}
     </main>    
 </body>
 </html>  
