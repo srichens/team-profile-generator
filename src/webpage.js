@@ -2,7 +2,7 @@ const managerSection = team => {
     let managerCard = '';
     for (i = 0; i < team.length; i++) {
         if(team[i].getRole() === 'Manager') {
-            managerCard = managerCard + manager(team[i])
+            managerCard = manager(team[i])
         }       
     } return managerCard;
 };
