@@ -1,3 +1,31 @@
+const webpageRender = team => {     
+     
+    return `
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header class="bg-red-500 text-white py-10 mx-5 text-5xl text-center">
+        <h1>My Team</h1>
+    </header>
+ 
+    <main id="cards" class="flex flex-row flex-wrap justify-center">
+    ${managerSection(team)}
+    ${engineerSection(team)}
+    ${internSection(team)}
+    </main>    
+</body>
+</html>  
+        
+    `  
+}
+
 const managerSection = team => {
     let managerCard = '';
     for (i = 0; i < team.length; i++) {
@@ -68,35 +96,6 @@ const intern = internInfo => {
 </section>   
 `
 }
-
-const webpage = data => {     
-  
-   
-    return `
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
-</head>
-<body>
-    <header class="bg-red-500 text-white py-10 mx-5 text-5xl text-center">
-        <h1>My Team</h1>
-    </header>
  
-    <main id="cards" class="flex flex-row flex-wrap justify-center">
-    ${managerSection(data)}
-    ${engineerSection(data)}
-    ${internSection(data)}
-    </main>    
-</body>
-</html>  
-        
-    `  
-}
- 
-    module.exports = webpage;
+module.exports = webpageRender;
     
