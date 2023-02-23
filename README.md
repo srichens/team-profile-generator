@@ -28,7 +28,7 @@ This app requires Node.js, npm, Inquirer and Jest.
 ## Usage
 See the video linked below that walks through the app's functionaility.
 
-[Link to Team Profile Generator Demo Video]
+[Link to Team Profile Generator Demo Video](https://watch.screencastify.com/v/jnNQ8lVnp7A54nt7TnSU)
 
 ## License
     This product is licensed under ISC.
