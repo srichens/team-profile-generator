@@ -17,7 +17,7 @@ This week's challenge was to write a Node.js command-line application to generat
 ## Table of Contents
 1. [Installation](#installation)
 2. [Usage](#usage)
-3. [Process Highligts](#process-highlights)
+3. [Process Highlights](#process-highlights)
 4. [License](#license)
 5. [Contributing](#contributing)
 6. [Tests](#tests)
