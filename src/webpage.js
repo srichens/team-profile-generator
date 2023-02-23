@@ -1,3 +1,4 @@
+//takes in team array from main js page, calls the chain of functions below, and returns the html that is passed back to the main js page and written to an new html file
 const webpageRender = team => {     
      
     return `
@@ -26,6 +27,8 @@ const webpageRender = team => {
     `  
 }
 
+//each function takes in the team array, filters out each specific role, 
+//calls the function further below that creates html cards, and then adds those cards together into one html block
 const managerSection = team => {
     let managerCard = '';
     for (i = 0; i < team.length; i++) {
@@ -53,6 +56,7 @@ const internSection = team => {
     } return internCards;
 };
 
+//these functions take the manager, engineer, and intern objects that were looped through above, and returns html with 
 const manager = managerInfo => {
     return `
     <section class="manager basis-full md:basis-2/5 lg:basis-1/4 bg-gray-300 mx-5 my-10 shadow-xl shadow-gray-500/70">

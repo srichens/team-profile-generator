@@ -26,6 +26,7 @@ function startApp(){
     })     
 };
 
+//initializes app - requires that a manager be added first
 startApp();
 
 const managerQuestions = [
@@ -83,6 +84,7 @@ const managerQuestions = [
     }    
 ];
 
+//creates manager object and adds it to the team array, then calls the function to add team members
 function managerChoice(){
     inquirer
      .prompt(managerQuestions)
@@ -103,12 +105,8 @@ const addQuestion = [
     }            
 ];
 
-function writeToFile(data) {        
-    fs.writeFile('./dist/index.html', data, (err) =>
-    err ? console.log(err) : console.log("Your team profile has been created!")
-    )
-};
-
+//if the user wants to add a team member, they are taken to a function to choose what kind
+//if the user is done adding team members, that data is pushed to the helper js file to convert it to html, and then that data is pushed to the writeFile function
 function add() {
     inquirer
      .prompt(addQuestion)
@@ -196,6 +194,7 @@ const engineerQuestions = [
     }    
 ];
 
+//creates engineer object and adds it to the team array, then calls the function to add a team member
 function engineerChoice(){
     inquirer
      .prompt(engineerQuestions)
@@ -261,6 +260,7 @@ const internQuestions = [
     }    
 ];
 
+//creates intern object and adds it to the team array, then calls the function to add a team member
 function internChoice(){
     inquirer
      .prompt(internQuestions)
@@ -269,4 +269,11 @@ function internChoice(){
         team.push(newIntern);   
         add();                
     })       
+};
+
+//takes data from helper js page and writes it to a new html page to render the finished product
+function writeToFile(data) {        
+    fs.writeFile('./dist/index.html', data, (err) =>
+    err ? console.log(err) : console.log("Your team profile has been created!")
+    )
 };

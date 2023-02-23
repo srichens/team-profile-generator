@@ -31,7 +31,7 @@ See the video linked below that walks through the app's functionaility.
 [Link to Team Profile Generator Demo Video](https://watch.screencastify.com/v/jnNQ8lVnp7A54nt7TnSU)
 
 ## License
-    This product is licensed under ISC.
+This product is licensed under ISC.
 
 ## Contributing
 If you would like to contribute to this application, please refer to the [Contributor Covenant](https://www.contributor-covenant.org/).
