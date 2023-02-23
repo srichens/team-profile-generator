@@ -4,10 +4,15 @@
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
 
-## Description
-xx
+## Bootcamp Week 10 Challenge
+This week's challenge was to write a Node.js command-line application to generate a HTML webpage with employee information for a software engineering company. The requirements were the following:
 
-
+1. Use the Inquirer package.
+2. Write unit tests, run them via Jest, and confirm they all pass.
+3. Accept user input from the command line to gather employee information.
+4. Start off getting team manager info, and then go through prompts to add engineers or interns until the team is complete.
+5. Use an employee class with properties that each employee has in common, and then use specific classes (manager, engineer, and intern) to extend the employee class.
+6. When the webpage is generated, ensure the email and Github links are clickable.
 
 ## Table of Contents
 1. [Installation](#installation)
@@ -18,10 +23,12 @@ xx
 6. [Questions](#questions)
 
 ## Installation
-xx
+This app requires Node.js, npm, Inquirer and Jest.
 
 ## Usage
-xx
+See the video linked below that walks through the app's functionaility.
+
+[Link to Team Profile Generator Demo Video]
 
 ## License
     This product is licensed under ISC.
